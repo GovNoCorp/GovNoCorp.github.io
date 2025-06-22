@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuesOs - premium</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .gold-text {
+            color: #ffd700;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        
+        header {
+            background: linear-gradient(to right, #1a1a1a, #3d2b1f, #1a1a1a);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffd700;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin: 0;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+        
+        h2, h3 {
+            color: #ffb700;
+            border-bottom: 1px solid #ffd700;
+            padding-bottom: 8px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .pricing-plans {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            gap: 20px;
+        }
+        
+        .plan {
+            background: rgba(30, 30, 30, 0.8);
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 25px;
+            width: 300px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .plan.popular {
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .plan.popular::before {
+            content: "ПОПУЛЯРНЫЙ";
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: #ffd700;
+            color: #1a1a1a;
+            padding: 3px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            margin-top: 0;
+            color: #ffd700;
+        }
+        
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #ffffff;
+        }
+        
+        .price span {
+            font-size: 16px;
+            color: #aaa;
+        }
+        
+
+        
+        .prices2 {
+            background: rgba(61, 43, 31, 0.5);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+            border: 1px solid #ffd700;
+        }
+        
+        .prices2-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .price2-item {
+            background: rgba(40, 40, 40, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #ffd700;
+        }
+        
+        
+        button {
+            background: linear-gradient(to bottom, #ffc107, #ff9800);
+            color: #1a1a1a;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        button:hover {
+            background: linear-gradient(to bottom, #ffd700, #ffab00);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        
+        .rates {
+            margin: 40px 0;
+        }
+        
+        .rate {
+            background: rgba(50, 50, 50, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .rate-author {
+            font-style: italic;
+            text-align: right;
+            color: #aaa;
+            margin-top: 10px;
+        }
+        
+        footer {
+            background: #111;
+            color: #999;
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #ffd700;
+            font-size: 14px;
+        }
+        
+        .guarantee {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(61, 43, 31, 0.5);
+            border-radius: 8px;
+            border: 1px dashed #ffd700;
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-plans {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .plan {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+     <header>
+        <h1 class="gold-text">Купить <span class="gold-text">PREMIUM подписки</span></h1>
+        <p>Здесь можно приобрести premium подписки связанные с системой!</p>
+    </header>
+    
+    <div class="container">
+        <h2>Выберите что купить</h2>
+        <p>Отмена подписки невозможна. Автопродление включено.</p>
+        
+        <div class="pricing-plans">
+            <div class="plan">
+                <h3 id="clock" class="plan-name">Pro-версия часов</h3>
+                <div class="price">130$ <span>/месяц</span></div>
+                <ul class="features">
+                    <li>Больше тем</li>
+                    <li>Разнообразная реклама</li>
+                </ul>
+                <button onclick="selectPlan('basic')">Напишите нам на почту для приобретения</button>
+            </div>
+            
+            <div class="plan">
+                <h3 id="player" class="plan-name">Premium-версия медиаплеера</h3>
+                <div class="price">198$ <span>/месяц</span></div>
+                <ul class="features">
+                    <li>Кастомные темы цвета говна</li>
+                    <li>Можно играть больше файлов (не факт)</li>
+                    <li>Больше рекламы</li>
+                </ul>
+                <button onclick="selectPlan('premium')">Напишите нам на почту для приобретения</button>
+            </div>
+            
+            <div class="plan">
+                <h3 id="os" class="plan-name">Pro+ версия системы</h3>
+                <div class="price">$228 <span>/месяц</span></div>
+                <ul class="features">
+                    <li>Больше непонятных ошибок</li>
+                    <li>х3 слежка</li>
+                    <li>Реклама каждую минуту</li>
+                    <li>Поддержка (с ответом через две недели, но круто же)</li>
+                    <li>GONDON+ для улучшенного сноса данных</li>
+                </ul>
+                <button onclick="selectPlan('ultimate')">Напишите нам на почту для приобретения</button>
+            </div>
+        </div>
+        
+        <div class="rates">
+            <h2>Отзывы купивших подписку</h2>
+            
+            <div class="rate">
+                <p>Система снесла мне MBR-запись, и спалила материнку. Это явно стоит 200$</p>
+                <div class="rate-author">- Fimozik 1488</div>
+            </div>
+            
+            <div class="rate">
+                <p>Отдал свои последние деньги (копил на закрытие кредита), и не жалею! Коллекторы кажды день - приятный бонус."</p>
+                <div class="rate-author">- Twgood не фек</div>
+            </div>
+            
+            <div class="rate">
+                <p>Мне не понравилось, идите нахуй. <br> <b>Ответ GovNo corp.: </b> мы насрали вам в компьютер</p>
+                <div class="rate-author">- Скибидихуесос3000</div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 GovNo corporation. Все права спизжены. Мы не несем ответственности за всё что вы думаете.</p>
+        <p>Поддержка: realriba@atomicmail.io</p>
+    </footer>
+    
+    <script>
+        function updatePrices() {
+            const prices = document.querySelectorAll('.price');
+            prices.forEach(price => {
+                const original = price.textContent;
+                const randomChange = Math.random() > 0.5 ? 1 : -1;
+                const changeAmount = Math.floor(Math.random() * 5) + 1;
+                const newPrice = parseFloat(original.replace('$', '').split(' ')[0]) + (changeAmount * randomChange);
+                
+                if(newPrice > 0) {
+                    price.innerHTML = `$${newPrice.toFixed(2)} <span>/месяц</span>`;
+                }
+            });
+        }
+        
+        setInterval(updatePrices, 10000);
+    </script>
+</body>
+</html>
