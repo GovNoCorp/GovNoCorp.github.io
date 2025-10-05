@@ -1,0 +1,41 @@
+@keyframes rotate-center {0% { transform: rotate(0); } 100% { transform: rotate(360deg);} }
+
+
+h2 {
+    font-family: 'Rubik Mono One';
+    animation: rotate-center 5s cubic-bezier(0.645, 0.045, 0.355, 1.000) 0s 1 normal both;
+}
+
+h1 {
+    font-family: 'Rubik Mono One';
+    animation: rotate-center 5s cubic-bezier(0.645, 0.045, 0.355, 1.000) 0s 1 normal both;
+
+}
+
+p {
+    font-family: 'Press Start 2P';
+}
+
+ul {
+    font-family: 'Press Start 2P';
+}
+
+body {
+    background: linear-gradient(90deg,rgba(56, 224, 22, 1) 0%, rgba(255, 0, 0, 1) 50%, rgba(69, 63, 0, 1) 100%);
+    backdrop-filter: blur(17px);
+}
+
+img {
+    min-width: 300px;
+    max-width: 80%;
+    animation: rotate-center 5s cubic-bezier(0.645, 0.045, 0.355, 1.000) 0s 1 normal both;
+}
+
+.download {
+    transition: 0.5s;
+}
+
+.download:hover {
+    transform: scale(1.5);
+    transition: 0.5s;
+}
