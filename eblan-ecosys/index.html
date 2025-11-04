@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBLAN ECOSYSTEM | Экосистема Eblan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000000, #1a0033, #000000);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .glitch-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .floating-bg {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 255, 252, 0.1) 0%, transparent 50%);
+            animation: float 20s infinite linear;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .glitch {
+            font-size: 6rem;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes glitch {
+            0%, 95%, 100% { 
+                text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                             0.025em 0.04em 0 #fffc00;
+                transform: translate(0);
+            }
+            96% { 
+                text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff;
+                transform: translate(2px, -1px);
+            }
+            97% { 
+                text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff;
+                transform: translate(-1px, 1px);
+            }
+            98% { 
+                text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff;
+                transform: translate(1px, -2px);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        .cyber-button {
+            background: transparent;
+            color: #00fffc;
+            border: 2px solid #00fffc;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            margin-top: 40px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 5px;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+        
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 252, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cyber-button:hover {
+            background: #00fffc;
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 252, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+        
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out both;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .app-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out both;
+            cursor: pointer;
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 252, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .app-card:hover::before {
+            left: 100%;
+        }
+        
+        .app-card:nth-child(1) { animation-delay: 0.1s; }
+        .app-card:nth-child(2) { animation-delay: 0.2s; }
+        .app-card:nth-child(3) { animation-delay: 0.3s; }
+        .app-card:nth-child(4) { animation-delay: 0.4s; }
+        .app-card:nth-child(5) { animation-delay: 0.5s; }
+        .app-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .app-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 255, 252, 0.2);
+            border-color: rgba(0, 255, 252, 0.3);
+        }
+        
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .app-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #00fffc;
+        }
+        
+        .neon-text {
+            color: #00fffc;
+            text-shadow: 0 0 10px rgba(0, 255, 252, 0.5);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .feature-list {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 2;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .feature-list p {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(0, 255, 252, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .feature-list p:hover {
+            background: rgba(0, 255, 252, 0.2);
+            transform: translateX(10px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid #333;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00fffc;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+        
+        /* Поп-ап стили */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .popup {
+            background: linear-gradient(135deg, #0a0a0a, #1a0033);
+            border: 2px solid #00fffc;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 0 50px rgba(0, 255, 252, 0.3);
+        }
+        
+        .popup.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #00fffc;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            transform: rotate(90deg);
+            color: #ff0000;
+        }
+        
+        .popup-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: bounce 3s infinite;
+        }
+        
+        .popup-title {
+            font-size: 2rem;
+            color: #00fffc;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 252, 0.5);
+        }
+        
+        .popup-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .popup-features {
+            margin-bottom: 30px;
+        }
+        
+        .popup-features h4 {
+            color: #00fffc;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .popup-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .popup-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .popup-features li:before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            color: #00fffc;
+        }
+        
+        .popup-button {
+            background: linear-gradient(45deg, #00fffc, #fc00ff);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .popup-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .popup-button:hover::before {
+            left: 100%;
+        }
+        
+        .popup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 252, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .popup {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <!-- Поп-ап оверлей -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup" id="popup">
+            <button class="popup-close" id="popupClose">&times;</button>
+            <div class="popup-icon" id="popupIcon">💥</div>
+            <h2 class="popup-title" id="popupTitle">Eblan Video Editor</h2>
+            <p class="popup-description" id="popupDescription">Луший видео редактор с хайповыми эффектами и фичами.</p>
+            
+            <div class="popup-features">
+                <h4>🔥 Возможности:</h4>
+                <ul>
+                    <li>Добавление текста, наложений</li>
+                    <li>Хайповые эффекты!!</li>
+                    <li>Рендеринг видео 10 лет</li>
+                </ul>
+            </div>
+            
+            <button class="popup-button" id="popupAction">СКАЧАТЬ ПРОГУ</button>
+        </div>
+    </div>
+    
+    <div class="glitch-container">
+        <div class="floating-bg"></div>
+        <div class="glitch">EBLAN ECOSYSTEM</div>
+        <div class="subtitle">Экосистема EBLAN От GovNo corp. и EBLAN Inc.</div>
+        <button class="cyber-button pulse">Просмотреть проги</button>
+        <div class="scroll-indicator">▼</div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title">
+            <span class="neon-text">НАШИ ПРОГИ</span>
+        </h2>
+        <div class="apps-grid">
+            <div class="app-card" data-app="eve">
+                <div class="app-icon">💥</div>
+                <h3 class="app-title">Eblan Video Editor</h3>
+                <p>Лучший видео-редактор мира с хайповыми передозными фичами!!</p>
+            </div>
+            
+            <div class="app-card" data-app="ebb">
+                <div class="app-icon">🔥</div>
+                <h3 class="app-title">Eblan Browser</h3>
+                <p>Крутой браузер с AI фичами.</p>
+            </div>
+            
+            <div class="app-card" data-app="ebm">
+                <div class="app-icon">🚀</div>
+                <h3 class="app-title">Eblan Music Maker </h3>
+                <p>Топовый редактор и создатель музыки.</p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title">
+            <span class="neon-text">ПОЧЕМУ ЭТО ИМБА ХАЙП</span>
+        </h2>
+        <div class="feature-list">
+            <p>✔️ Медленный говнокод</p>
+            <p>✔️ Проги которых нет ни у кого</p>
+            <p>✔️ Очень передоз</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="glitch" style="font-size: 2rem;">EBLAN ECOSYSTEM</div>
+        <p style="margin-top: 20px; opacity: 0.7;">© 2025 GovNo corp. И EBLAN Inc. Все права спизженны.</p>
+    </footer>
+
+    <script>
+        // Данные для поп-апов
+        const appsData = {
+            eve: {
+                icon: '💥',
+                title: 'Eblan Video Editor',
+                description: 'Лучший видео-редактор мира с хайповыми передозными фичами!! Разраб: GovNo corp.',
+                features: [
+                    'Текст и наложения',
+                    'Передоз эффекты',
+                    'Рендеринг 100 лет',
+                    'Бесплатно!!!'
+                ],
+                downloadUrl: '/eblan'
+            },
+            ebb: {
+                icon: '🔥',
+                title: 'Eblan Browser',
+                description: 'Крутой браузер с AI фичами. Разраб: EBLAN Inc.',
+                features: [
+                    'Медленно грузит баяны',
+                    'Уникальный дизайн из 1998 года',
+                    'AI-фичи: EBLAN AI'
+                ],
+                downloadUrl: 'https://twgood.serv00.net/browser/S/'
+            },
+            ebm: {
+                icon: '🚀',
+                title: 'Eblan Music Maker (еще не вышел)',
+                description: 'Топовый редактор и создатель музыки. Разраб: GovNo corp.',
+                features: [
+                    'Встроенная нейронка для создания битов',
+                    'Чоткие предустановленные передозные киты',
+                    'Поможет делать лучшие треки'
+                ],
+                downloadUrl: '/ebm'
+            }
+        };
+
+        // Matrix background effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const letters = 'EBLAN01010101010101010101010101010101010101';
+        const lettersArray = letters.split('');
+        
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 35);
+        
+        // Поп-ап логика
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popup = document.getElementById('popup');
+        const popupClose = document.getElementById('popupClose');
+        const popupIcon = document.getElementById('popupIcon');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupDescription = document.getElementById('popupDescription');
+        const popupAction = document.getElementById('popupAction');
+        
+        // Обработчики для карточек приложений
+        document.querySelectorAll('.app-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const appId = this.dataset.app;
+                const appData = appsData[appId];
+                
+                if (appData) {
+                    // Заполняем поп-ап данными
+                    popupIcon.textContent = appData.icon;
+                    popupTitle.textContent = appData.title;
+                    popupDescription.textContent = appData.description;
+                    
+                    // Очищаем и заполняем список фич
+                    const featuresList = popup.querySelector('.popup-features ul');
+                    featuresList.innerHTML = '';
+                    appData.features.forEach(feature => {
+                        const li = document.createElement('li');
+                        li.textContent = feature;
+                        featuresList.appendChild(li);
+                    });
+                    
+                    // Настраиваем кнопку
+                    popupAction.textContent = 'СКАЧАТЬ ' + appData.title.toUpperCase();
+                    popupAction.onclick = function() {
+                        window.location.href = appData.downloadUrl;
+                    };
+                    
+                    // Показываем поп-ап
+                    popupOverlay.classList.add('active');
+                    setTimeout(() => {
+                        popup.classList.add('active');
+                    }, 10);
+                }
+            });
+        });
+        
+        // Закрытие поп-апа
+        popupClose.addEventListener('click', closePopup);
+        popupOverlay.addEventListener('click', function(e) {
+            if (e.target === popupOverlay) {
+                closePopup();
+            }
+        });
+        
+        function closePopup() {
+            popup.classList.remove('active');
+            setTimeout(() => {
+                popupOverlay.classList.remove('active');
+            }, 300);
+        }
+        
+        // Smooth scroll
+        document.querySelector('.cyber-button').addEventListener('click', function() {
+            this.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                this.style.animation = 'pulse 2s infinite';
+            }, 500);
+            
+            document.querySelector('.apps-grid').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+        
+        // Particle effect on click
+        document.addEventListener('click', function(e) {
+            createParticles(e.clientX, e.clientY);
+        });
+        
+        function createParticles(x, y) {
+            const particles = 8;
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                document.body.appendChild(particle);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 2 + Math.random() * 2;
+                const size = 2 + Math.random() * 4;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.opacity = '1';
+                
+                const vx = Math.cos(angle) * speed;
+                const vy = Math.sin(angle) * speed;
+                
+                let opacity = 1;
+                const animate = () => {
+                    opacity -= 0.02;
+                    particle.style.opacity = opacity;
+                    particle.style.transform = `translate(${vx * (1 - opacity) * 50}px, ${vy * (1 - opacity) * 50}px)`;
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        particle.remove();
+                    }
+                };
+                
+                animate();
+            }
+        }
+        
+        // Resize handling
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.app-card, .section-title, .feature-list p').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
